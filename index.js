@@ -23,6 +23,13 @@ db.once('open', () => {
 app.post('/register', async (req, res) => {
 	console.log(req.body)
 	try {
+		// Connect the Database
+        let client = await mongoClient.connect(url)
+
+        // Select the DB
+        let db = client.db("jwt");
+
+
 		const newPassword = await bcrypt.hash(req.body.password, 10)
 		await User.create({
 			name: req.body.name,
@@ -31,12 +38,25 @@ app.post('/register', async (req, res) => {
 	
 		})
 		res.json({ status: 'ok' })
+		
+        // Close the Connection
+        await client.close();
 	} catch (err) {
 		res.json({ status: 'error', error: 'Duplicate email' })
 	}
 })
 
+
+
 app.post('/login', async (req, res) => {
+	// Connect the Database
+	let client = await mongoClient.connect(url)
+
+	// Select the DB
+	let db = client.db("jwt");
+
+	
+
 	const user = await User.findOne({
 		email: req.body.email,
 	})
