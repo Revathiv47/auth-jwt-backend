@@ -6,7 +6,7 @@ const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT | 1337
-const url = "mongodb+srv://admin:<Riya4798>@jwt.osp3y.mongodb.net/jwt?retryWrites=true&w=majority";
+const url = "mongodb+srv://admin:Riya4798@jwt.osp3y.mongodb.net/jwt?retryWrites=true&w=majority";
 
 
 app.use(cors())
