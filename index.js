@@ -6,19 +6,15 @@ const User = require('./models/user.model')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const PORT = process.env.PORT | 1337
+const url = "mongodb+srv://admin:<Riya4798>@jwt.osp3y.mongodb.net/jwt?retryWrites=true&w=majority";
+
 
 app.use(cors())
 app.use(express.json())
 
 
-//const url = "mongodb+srv://admin:<Riya4798>@jwt.osp3y.mongodb.net/jwt?retryWrites=true&w=majority";
 
-mongoose.connect('mongodb://localhost:27017/full-mern-stack')
-const db = mongoose.connection;
 
-db.once('open', () => {
-    console.log("DB connected");
-})
 
 app.post('/register', async (req, res) => {
 	console.log(req.body)
